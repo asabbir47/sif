@@ -16,4 +16,46 @@ class StudentsController extends Controller
           'students' => $studentsPaginatedData
         ]);
     }
+
+    public function store(Request $request)
+    {
+
+      $input = $request->all();
+
+      // dd($input);
+
+        $request->validate([
+          'student_id' => 'required',
+          'name' => 'required',
+          'fname'=> '',
+          'mname'=> '',
+          'dob'=> ''
+        ]);
+
+        students::create($input);
+
+        return  redirect('/students');
+
+      // // dd($request);
+      //       $v_data = $this->validate($request,[
+      //         'student_id' => 'required|unique:students',
+      //         'name' => 'required',
+      //         'fname'=> '',
+      //         'mname'=> '',
+      //         'dob'=> ''
+      //       ]);
+      //
+      //       dd($v_data);
+      //
+      //   $student= new students();
+      //
+      //   $student->create($v_data);
+    }
+
+    public function destroy()
+    {
+      $coin = Coin::findOrFail($coin);
+    $coin->delete();
+    return back();
+    }
 }

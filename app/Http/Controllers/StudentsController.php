@@ -61,13 +61,11 @@ class StudentsController extends Controller
       return back();
     }
 
-    public function update($id)
+    public function update(students $student)
     {
-      $student = students::findOrFail($id);
+      // $student = students::findOrFail($id);
 
-      $input = $request->all();
-
-      $request->validate([
+      $input = request()->validate([
         'student_id' => 'required',
         'name' => 'required',
         'fname'=> '',
@@ -75,7 +73,19 @@ class StudentsController extends Controller
         'dob'=> ''
       ]);
 
-      $student->save($input);
+      // dd($input);
+
+      // $request->validate([
+      //   'student_id' => 'required',
+      //   'name' => 'required',
+      //   'fname'=> '',
+      //   'mname'=> '',
+      //   'dob'=> ''
+      // ]);
+
+      // dd($student);
+
+      $student->update($input);
 
       return  redirect('/students');
     }

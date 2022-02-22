@@ -25,7 +25,7 @@
                     </thead>
                     <tbody>
                       @foreach ($students as $student)
-                          <tr data-info={{ json_encode($student) }}>
+                          <tr data-info="{{ json_encode($student) }}">
                             <td> {{ $student->student_id }} </td>
                             <td> {{ $student->name }} </td>
                             <td> {{ $student->fname }} </td>
@@ -39,7 +39,7 @@
                                   @csrf @method('DELETE')
                                   <a type='submit'><i  class="delete_student fa fa-trash" data-id = "{{ $student->id }}"  style="font-size:24px;color:red;cursor:pointer;" aria-hidden="true"></i></a>
                               </form>
-                                
+
                               </div>
                             </td>
                           </tr>
@@ -159,10 +159,17 @@
     $('#update_modal').modal('show');
 
     var data = $(this).closest('tr').data('info');
+    console.log(data);
+    // var data_a = JSON.parse(data);
+    // console.log($('#update_student_modal').find("input[name='student_id']"));
+    $('#update_student_modal').find("input[name='student_id']").val(data.student_id);
+    $('#update_student_modal').find("input[name='name']").val(data.name);
+    $('#update_student_modal').find("input[name='fname']").val(data.fname);
+    $('#update_student_modal').find("input[name='mname']").val(data.mname);
+    $('#update_student_modal').find("input[name='dob']").val(data.dob);
 
-    var data_a = JOSON.parse(data);
+    $('#update_student_modal').attr('action','students/'+data.id);
 
-    $('#update_student_modal').find(input )
   });
 
   $(document).on('click','#add_student',function(){

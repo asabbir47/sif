@@ -34,7 +34,7 @@
                             <td>
                               <div class="d-flex justify-content-around">
                                 <i class="update_student fa fa-pencil" data-id = "{{ $student->id }}"  style="font-size:24px;color:blue;cursor:pointer;" aria-hidden="true"></i>
-                                <form onclick='this.submit()' action='/students/{{ $student->id }}'
+                                <form onclick='if(confirm("Are you sure?"))this.submit()' action='/students/{{ $student->id }}'
                                     method="post">
                                   @csrf @method('DELETE')
                                   <a type='submit'><i  class="delete_student fa fa-trash" data-id = "{{ $student->id }}"  style="font-size:24px;color:red;cursor:pointer;" aria-hidden="true"></i></a>

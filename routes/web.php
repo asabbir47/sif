@@ -24,3 +24,5 @@ Route::get('/students', 'StudentsController@index')->name('students');
 Route::post('/students', 'StudentsController@store')->name('students.store');
 Route::delete('/students/{id}','StudentsController@destroy')->name('students.destroy');
 Route::put('/students/{student}','StudentsController@update')->name('students.update');
+
+Route::get('/{id}/posts/','PostController@index')->name('user.posts');
